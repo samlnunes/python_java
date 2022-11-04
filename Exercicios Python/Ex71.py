@@ -1,11 +1,18 @@
-onibus = [['','','',''], ['','','',''], ['','','',''], ['','','',''], ['','','',''], ['','','',''], ['','','',''], ['','','',''], ['','','',''], ['','','','']]
+onibus = []
 
-vagas = True
+lotacao = 0
 resp = 'S'
 
-print('Excursão Las Vega')
+for i in range(0, 10, 1):
+    onibus.append([])
 
-while vagas and resp == 'S':
+for l in range(0, 10, 1):
+    for c in range(0, 4, 1):
+        onibus[l].append("-")
+
+print('Excursão Santos (Charlie Brown Jr)')
+
+while resp == 'S' and lotacao != 40:
     print('')
     for i in range(0, len(onibus), 1):
         print(i+1, onibus[i])
@@ -14,22 +21,20 @@ while vagas and resp == 'S':
     fil = int(input('Digite a fileira que você deseja: '))-1
     cad = int(input('Digite a cadeira que você deseja: '))-1
 
-    if (onibus[fil][cad] == ''):
+    if (onibus[fil][cad] == '-'):
         onibus[fil][cad] = nome
+        print('\nReserva realizada com sucesso!')
+        lotacao = lotacao + 1
     else:
-        print('Cadeira ocupada\n')
-    
-    vagas = False
-    for l in range(0, len(onibus), 1):
-        for c in range(0, 4, 1):
-            if (onibus[l][c] == ''):
-                vagas = True
+        print('\nCadeira ocupada!')
 
-    resp = input('\nExiste mais alguém que queira viajar para a metrópole (S/N)? ')
+    if (lotacao != 40):
+        resp = input('\nExiste mais alguém que queira viajar para o litoral (S/N)? ')
+    else:
+        print('\nÔnibus lotado!')
+        break   
 
-if (vagas == False):
-    print('\nÔnibus lotado!')
+print('\nBoa Viagem!\n')
 
-print('\nBoa Viagem!')
 for i in range(0, len(onibus), 1):
     print(i+1, onibus[i])
